@@ -9,6 +9,6 @@ export const errorHandler = (err, req, res, next) => {
   }
 
   res.status(500).json({
-    message: isProd ? "Server error" : err.stack,
+    message: isProd ? "Server error" : err.message,
   });
 }

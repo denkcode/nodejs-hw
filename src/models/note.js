@@ -1,6 +1,6 @@
-import { Schema, model } from "mongoose";
+import { Schema, model } from 'mongoose';
 
-const NotesSchema = new Schema(
+const NoteSchema = new Schema(
   {
     title: {
       type: String,
@@ -10,17 +10,25 @@ const NotesSchema = new Schema(
     content: {
       type: String,
       required: false,
+      default: '',
       trim: true,
     },
     tag: {
       type: String,
       required: false,
       default: 'Todo',
-      enum: ['Work', 'Personal', 'Meeting', 'Shopping', 'Ideas', 'Travel', 'Finance', 'Health', 'Important', 'Todo'],
-    },
-    avgMark: {
-      type: Number,
-      required: true,
+      enum: [
+        'Work',
+        'Personal',
+        'Meeting',
+        'Shopping',
+        'Ideas',
+        'Travel',
+        'Finance',
+        'Health',
+        'Important',
+        'Todo',
+      ],
     },
   },
   {
@@ -29,4 +37,4 @@ const NotesSchema = new Schema(
   },
 );
 
-export const Notes = model('Notes', NotesSchema);
+export const Note = model('Note', NoteSchema);

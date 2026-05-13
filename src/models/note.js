@@ -1,6 +1,7 @@
-import { Schema, model } from "mongoose";
+import { Schema, model } from 'mongoose';
+import { TAGS } from '../constants/tags.js';
 
-const NotesSchema = new Schema(
+const NoteSchema = new Schema(
   {
     title: {
       type: String,
@@ -10,17 +11,14 @@ const NotesSchema = new Schema(
     content: {
       type: String,
       required: false,
+      default: '',
       trim: true,
     },
     tag: {
       type: String,
       required: false,
       default: 'Todo',
-      enum: ['Work', 'Personal', 'Meeting', 'Shopping', 'Ideas', 'Travel', 'Finance', 'Health', 'Important', 'Todo'],
-    },
-    avgMark: {
-      type: Number,
-      required: true,
+      enum: TAGS,
     },
   },
   {
@@ -29,4 +27,4 @@ const NotesSchema = new Schema(
   },
 );
 
-export const Notes = model('Notes', NotesSchema);
+export const Note = model('Note', NoteSchema);

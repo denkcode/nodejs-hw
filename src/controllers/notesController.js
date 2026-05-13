@@ -22,17 +22,17 @@ export const getAllNotes = async (req, res) => {
     NoteQuery.where('tag').equals(tag)
   }
 
-  const [TotalItems, note] = await Promise.all([
+  const [TotalNotes, note] = await Promise.all([
     NoteQuery.clone().countDocuments(),
     NoteQuery.skip(skip).limit(limit)
   ]);
 
-  const TotalPages = Math.ceil(TotalItems / limit);
+  const TotalPages = Math.ceil(TotalNotes / limit);
 
   res.status(200).json({
     page,
     perPage,
-    TotalItems,
+    TotalNotes,
     TotalPages,
     note,
   });

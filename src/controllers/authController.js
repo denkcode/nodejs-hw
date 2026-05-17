@@ -48,13 +48,13 @@ export const loginUser = async (req, res) => {
 
   setSessionCookies(res, newSession);
 
-  res.status(201).json(user);
+  res.status(200).json(user);
 };
 
 // LogoutUser
 
 export const logoutUser = async (req, res) => {
-  const { sessionId } = req.cookie;
+  const { sessionId } = req.cookies;
   if (sessionId) {
     await Session.deleteOne({_id: sessionId})
   }
@@ -68,9 +68,9 @@ export const logoutUser = async (req, res) => {
 }
 
 // refreshUserSession
-
+  
 export const refreshUserSession = async (req, res) => {
-  const { sessionId, refreshToken } = req.cookie;
+  const { sessionId, refreshToken } = req.cookies;
 
   if (!sessionId || !refreshToken) {
     throw createHttpError(401, 'Session not found')

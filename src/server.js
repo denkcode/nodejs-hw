@@ -9,6 +9,7 @@ import { errorHandler } from './middleware/errorHandler.js';
 import { logger } from './middleware/logger.js';
 import { errors } from "celebrate";
 import authRoutes from './routes/authRoutes.js';
+import cookieParser from "cookie-parser";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -21,6 +22,7 @@ app.use(
     origin: "*",
   }),
 );
+app.use(cookieParser());
 app.use(logger);
 
 app.use(authRoutes);

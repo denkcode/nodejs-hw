@@ -10,4 +10,4 @@ router.patch(
 );
 
 
-export default Router
+export default router

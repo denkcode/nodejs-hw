@@ -6,10 +6,10 @@ import { saveFileToCloudinary } from "../utils/saveFileToCloudinary.js";
 export const updateUserAvatar = async (req, res) => {
 const { file, user } = req;
   if (!req.file) {
-    throw createHttpError(404, 'No file')
+    throw createHttpError(400, 'No file')
   }
 
-  const result = await saveFileToCloudinary(file.buffer. user._id)
+  const result = await saveFileToCloudinary(file.buffer, user._id)
 
   const updatedUser = await User.findOneAndUpdate(
     {_id: user._id},
@@ -17,5 +17,5 @@ const { file, user } = req;
     {returnDocument: "after"}
 
   )
-  res.status(200).json({ url: user.avatar });
+  res.status(200).json({ url: updatedUser.avatar });
 };

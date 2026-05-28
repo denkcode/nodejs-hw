@@ -124,7 +124,7 @@ export const requestResetEmail = async (req, res) => {
 
   const resetLink = `${process.env.FRONTEND_DOMAIN}/reset-password?token=${resetToken}`
 
-  const templateSource = fs.readFileSync('src/template/reset-password-email.html', 'utf-8')
+  const templateSource = fs.readFileSync('src/templates/reset-password-email.html', 'utf-8')
   const template = Handlebars.compile(templateSource)
   const html = template({ name: user.name, resetLink })
 
